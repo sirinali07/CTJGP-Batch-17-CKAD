@@ -209,6 +209,7 @@ env | grep token
 ```
 
 ### Task 5 : Injecting ConfigMap as volume mount
+If already created `file-cm` configmap  then ignore the below step
 
 Create a file
 ```
@@ -219,17 +220,17 @@ This is CKAD Training. We are practicing Injecting variables from ConfigMaps(Fro
 ```
 Create a ConfigMap
 ```
-kubectl create cm cm-1 --from-file=token        
+kubectl create cm file-cm --from-file=token        
 ```
 ```
 kubectl get cm
 ```
 ```
-kubectl describe cm cm-1
+kubectl describe cmfile-cm
 ```
 Inject as volume mount
 ```
-vi env.yaml
+vi volume-env.yaml
 ```
 ```yaml
 apiVersion: v1
@@ -237,7 +238,7 @@ kind: Pod
 metadata:
   labels:
     app: web
-  name: web-pod
+  name: web-pod-4
 spec:
   volumes:
   - name: cm-volume
@@ -254,14 +255,14 @@ spec:
 
 ```
 ```
-kubectl replace -f env.yaml --force
+kubectl replace -f volume-env.yaml --force
 ```
 ```
-kubectl describe pod web-pod
+kubectl describe pod web-pod-4
 ```
 Enter the pod and check if the variable has been passed correctly or not
 ```
-kubectl exec -it web-pod -- sh
+kubectl exec -it web-pod-4 -- sh
 ```
 ```
 cd /app
