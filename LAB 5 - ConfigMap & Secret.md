@@ -56,7 +56,7 @@ kubectl describe cm cm-1
 ```
 Inject the ConfigMap into the Pod Yaml File
 ```
-vi env.yaml
+vi cm-env.yaml
 ```
 ```yaml
 apiVersion: v1
@@ -76,7 +76,7 @@ spec:
         name: cm-1
 ```
 ```
-kubectl apply -f env.yaml
+kubectl apply -f cm-env.yaml
 ```
 ```
 kubectl describe pod web-pod
