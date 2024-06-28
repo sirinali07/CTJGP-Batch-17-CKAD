@@ -138,7 +138,7 @@ kubectl describe pod web-pod
 ```
 Enter the pod and check if the variable has been passed correctly or not
 ```
-kubectl exec -it web-pod-2 -- sh
+kubectl exec -it web-pod-2 --  bash
 ```
 ```
 echo $db_user
@@ -199,7 +199,7 @@ kubectl describe pod web-pod-3
 ```
 Enter the pod and check if the variable has been passed correctly or not
 ```
-kubectl exec -it web-pod-3 -- sh
+kubectl exec -it web-pod-3 --  bash
 ```
 ```
 echo $token
@@ -243,7 +243,7 @@ spec:
   volumes:
   - name: cm-volume
     configMap:
-      name: cm-1
+      name: file-cm
   containers:
   - image: httpd
     name: ctr-1
@@ -262,7 +262,7 @@ kubectl describe pod web-pod-4
 ```
 Enter the pod and check if the variable has been passed correctly or not
 ```
-kubectl exec -it web-pod-4 -- sh
+kubectl exec -it web-pod-4 -- bash
 ```
 ```
 cd /app
