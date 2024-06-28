@@ -189,7 +189,7 @@ spec:
     - containerPort: 80
     envFrom:
     - configMapRef:
-        name: cm-1
+        name: file-cm
 ```
 ```
 kubectl apply -f file-cm-env.yaml
