@@ -108,7 +108,7 @@ kubectl describe cm cm-1
 ```
 Inject particular variable from the ConfigMap into the Pod Yaml File
 ```
-vi env.yaml
+vi cm2-env.yaml
 ```
 ```yaml
 apiVersion: v1
@@ -116,7 +116,7 @@ kind: Pod
 metadata:
   labels:
     app: web
-  name: web-pod
+  name: web-pod-2
 spec:
   containers:
   - image: httpd
@@ -131,7 +131,7 @@ spec:
           key: db_pwd
 ```
 ```
-kubectl replace -f env.yaml --force
+kubectl replace -f cm2-env.yaml --force
 ```
 ```
 kubectl describe pod web-pod
