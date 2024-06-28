@@ -263,18 +263,27 @@ Access you application on the port 32123
 
 ### Task 4: Canary Deployment in Kubernetes 
 
+#### Step 1 : Update the Deployment YAML Files with a Common Label
 Service and deployment should have a common label.
 Add `type: web-app` to yaml file of both the deployments and apply again.
-
+```
+vi web-green.yaml 
+```
 Use `replace` , as apply command might throw an error.
 ```
-kubectl replace -f web-green.yaml
+kubectl replace -f web-green.yaml --force
 ```
 ```
-kubectl replace -f web-blue.yaml
+vi web-blue.yaml 
+```
+Use `replace` , as apply command might throw an error.
+```
+kubectl replace -f web-blue.yaml --force
 ```
 In the yaml file of Service change the Selector to 'type: web-app` and replace.
-
+```		 
+vi svc-web.yaml
+```
 Check the endpoints of the service. It should show all the pods of both the deployments.
 ```
 kubectl get ep svc svc-web
@@ -284,6 +293,43 @@ kubectl get po -o wide
 ```
 Access the application on port 32123. Sometime it will show Blue, other time it will show green.
 
+Either performe the `Step 1` or `Step 2` to perform `Canary Deployment` LAB:
 
+#### Step 2 : Update Using kubectl edit Command
+Edit the web-blue deployment and add the label `type: web-app` under `metadata.labels:`:
+```
+kubectl edit deploy web-blue
+```
+Edit the web-green deployment and add the label `type: web-app` under `metadata.labels:`:
+```
+kubectl edit deploy web-green
+```
+List all the pods with their labels:
+```
+kubectl get po --show-labels
+```
+List all the pods with detailed information:
+```
+kubectl get po -o wide
+```
+Now Edit the svc-web service and change the selector to `type: web-app`:
+```
+kubectl edit svc svc-web
+```
+Check the endpoints of the service:
+```
+kubectl get ep svc-web
+```
+Describe the endpoints of the service:
+```
+kubectl describe ep svc-web
+```
 
+Access the Application:
 
+Copy the `Node-Public-IP` along with `Nodeport Number` in the browser to access the `Web Application`
+http://Public-IP:NodePort
+i.e
+http://3.4.5.7:32123 
+
+By following these steps, you can successfully perform a canary deployment in Kubernetes, where the traffic is distributed between the Blue and Green deployments.
