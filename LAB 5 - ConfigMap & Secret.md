@@ -162,17 +162,17 @@ This is CKAD Training. We are practicing Injecting variables from ConfigMaps(Fro
 ```
 Create a ConfigMap
 ```
-kubectl create cm cm-1 --from-file=token         #--from-file=<filen-name>. This file name acts as the key
+kubectl create cm file-cm --from-file=token         #--from-file=<filen-name>. This file name acts as the key
 ```
 ```
 kubectl get cm
 ```
 ```
-kubectl describe cm cm-1
+kubectl describe cm file-cm 
 ```
 Inject particular variable from the ConfigMap into the Pod Yaml File
 ```
-vi env.yaml
+vi file-cm-env.yaml
 ```
 ```yaml
 apiVersion: v1
@@ -180,7 +180,7 @@ kind: Pod
 metadata:
   labels:
     app: web
-  name: web-pod
+  name: web-pod-3
 spec:
   containers:
   - image: httpd
@@ -192,14 +192,14 @@ spec:
         name: cm-1
 ```
 ```
-kubectl apply -f env.yaml
+kubectl apply -f file-cm-env.yaml
 ```
 ```
-kubectl describe pod web-pod
+kubectl describe pod web-pod-3
 ```
 Enter the pod and check if the variable has been passed correctly or not
 ```
-kubectl exec -it web-pod -- sh
+kubectl exec -it web-pod-3 -- sh
 ```
 ```
 echo $token
