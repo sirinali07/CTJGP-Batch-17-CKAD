@@ -96,7 +96,7 @@ env | grep db_
 ```
 
 ### Task 3: Inject `PARTICULAR` variables from ConfigMaps(FromLiteral) into POD.
-Create a ConfigMap
+Create a ConfigMap (If already perform then ignore the below step)
 ```
 kubectl create cm cm-1 --from-literal=db_user=admin --from-literal=db_pwd=1234
 ```
