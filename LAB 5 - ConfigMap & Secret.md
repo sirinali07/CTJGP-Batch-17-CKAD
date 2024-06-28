@@ -226,7 +226,7 @@ kubectl create cm file-cm --from-file=token
 kubectl get cm
 ```
 ```
-kubectl describe cmfile-cm
+kubectl describe cm file-cm
 ```
 Inject as volume mount
 ```
