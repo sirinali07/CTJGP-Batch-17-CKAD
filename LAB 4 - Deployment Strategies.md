@@ -280,7 +280,7 @@ Use `replace` , as apply command might throw an error.
 ```
 kubectl replace -f web-blue.yaml --force
 ```
-In the yaml file of Service change the Selector to 'type: web-app` and replace.
+In the yaml file of Service change the Selector to `type: web-app` and replace.
 ```		 
 vi svc-web.yaml
 ```
